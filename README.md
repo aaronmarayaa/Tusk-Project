@@ -20,7 +20,7 @@ Sa branching, gagamitin tayo ng simpleng naming convention(name-niyo/***feature-
         >Ex. ref: remove unused variables.
     - ***`style:`*** kapag maglalagay ng style or UI/UX related na design/changes.
         >Ex. style: change the background color.
-    - fix: bago gamitin yung message convention na to, gagawa ulit kay ng branch, papangalanan niyo ng (name-niyo/bugfix/saang-part-yung-inaayos).
+    - ***`fix:`*** bago gamitin yung message convention na to, gagawa ulit kay ng branch, papangalanan niyo ng (name-niyo/bugfix/saang-part-yung-inaayos).
         >Ex. fix: configure the api fetching.
     - ***`docs:`*** kapag documentation lang uupload natin.
     - ***`add`***, kapag binubuo pa lang yung program pero gusto niyo na isave yung commit niyo.
