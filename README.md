@@ -26,3 +26,22 @@ Sa branching, gagamitin tayo ng simpleng naming convention(name-niyo/***feature-
     - ***`add`***, kapag binubuo pa lang yung program pero gusto niyo na isave yung commit niyo.
         >Ex. add an input for username and password.
 
+# API endpoints
+
+### Authentications
+- Login API
+    - `/api/auth/login`
+- Home API
+    - `/api/auth/userHome`
+- Registration API
+    - `/api/auth/register`
+
+### Chat Sessions
+- Creating a new chat
+    - `/api/chats/new-chat`
+- Getting the chat index
+    - `/api/chats/getChat`
+
+### Asking the chatbot
+- Getting the Chatbot answer
+    - `/api/tusk/ask-pdf`
