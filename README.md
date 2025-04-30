@@ -2,7 +2,7 @@
 
 - Hindi ko uupload sa github yung backend natin para hindi na iba-iba environment(iwas remote debugging). So basically, gagamit ako ng application para maging public yung hosting natin. Baka magkaroon lang tayo ng time kung kailan open yung hosting na’yon.
     >_Instead of using localhost:8080, gamitin niyo tong domain na to:_
-    `https://darling-blatantly-panther.ngrok-free.app`
+    `https://stale-melodie-aaronmarayaa-f2e40747.koyeb.app`
 
 - Everytime na kukuha tayo ng changes from master branch(sa github repository), git rebase gamitin natin(para hindi magulo git history natin), tas tsaka ko immerge sa main/master branch. 
 
