@@ -35,6 +35,8 @@ Sa branching, gagamitin tayo ng simpleng naming convention(name-niyo/***feature-
     - `/api/auth/userHome`
 - Registration API
     - `/api/auth/register`
+- Delete Chat API
+    - `/api/auth/deleteChat`
 
 ### Chat Sessions
 - Creating a new chat
