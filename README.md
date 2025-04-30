@@ -28,22 +28,90 @@ Sa branching, gagamitin tayo ng simpleng naming convention(name-niyo/***feature-
 
 # API endpoints
 
-### Authentications
-- Login API
-    - `/api/auth/login`
-- Home API
-    - `/api/auth/userHome`
-- Registration API
-    - `/api/auth/register`
-- Delete Chat API
-    - `/api/auth/deleteChat`
+### 🔐 **Authentications**
+### Login API
+- **URL:** `/api/auth/login`
+- **Method:** `POST`
+- **Request Body:** 
+    - ```JSON
+        {"username": "string", "password": "string"}```
+- **Response (Success):** 
+    - **Status Code:** `200 OK`
+    - ```nginx
+        Login successful
+        ```
+- **Response (Failure):** 
+    - **Status Code:** `401 Unauthorized`
+    - ```nginx
+        Invalid credentials
+        ```
 
-### Chat Sessions
-- Creating a new chat
-    - `/api/chats/new-chat`
-- Getting the chat index
-    - `/api/chats/getChat`
+### Home API
+- **URL:** `/api/auth/userHome`
+- **Method:** `GET`
+- **Authentication:** ***`Requires session cookie`***
+- **Response (Success):**
+    - **Status Code:** `200 OK`
+    - ```JSON
+        {"email": "email@example.com"}
+        ```
+- **Response (Unauthorized):**
+    - **Status Code:** `401 Unauthorized`
+    - ```JSON
+        {"error": "Not logged in"}
+        ```
 
-### Asking the chatbot
-- Getting the Chatbot answer
-    - `/api/tusk/ask-pdf`
+### Registration
+- **URL:** `/api/auth/register`
+- **Method:** `POST`
+- **Request Body**
+    - ```JSON
+        {"username": "string", "password": "string"}
+        ```
+- **Response (Success):**
+    - **Status Code:** `200 OK`
+    - ```JSON
+        {"success": true, "message": "Registration successful!"}
+        ```
+- **Response (Unauthorized):**
+    - **Status Code:** `400 Unauthorized`
+    - ```JSON
+        {"error": "User Already Exist!"}
+        ```
+    - **Status Code:** `400 Unauthorized`
+    - ```JSON
+        {"error": "Email must not be null or blank"}
+        ```
+
+---
+### 💬 **Chat Sessions**
+### Creating a new chat
+- **URL:** `/api/chats/new-chat`
+- **Method:** `GET`
+- **Authentication:** ***`Requires session cookie`***
+- **Response (Success):**
+    - **Status Code:** `200 OK`
+    - ```nginx
+        New session created.
+        ```
+### Getting the chat index
+- **URL:** `/api/chats/getChat`
+- **Method:** `GET`
+- **Authentication:** ***`Requires session cookie`***
+- **Response (Success):** 
+    - ```JSON
+        [[...], [...]]
+        ```
+---
+### 🤖 **Asking the chatbot**
+### Getting the Chatbot answer
+- **URL:** `/api/tusk/ask-pdf`
+- **Method:** `POST`
+- **Content-Type:** `multipart/form-data`
+- **Authentication:** ***`Requires session cookie`***
+- **Form Fields:**
+
+    -   | **Field**     | **Type**    |  **Description**                 |
+        | ------------  | ----------- | -------------------------------  | 
+        | `file`        | file        | PDF file to upload               |
+        | `question`    | String      | The question to ask the chatbot  |
