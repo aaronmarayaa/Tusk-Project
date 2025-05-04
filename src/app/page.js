@@ -1,228 +1,89 @@
 'use client';
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Paperclip, Send } from 'lucide-react';
+import { useState, useRef } from 'react';
+import Navigation from './navigation/page';
 
-function Navigation() {
-  const [isLoginVisible, setIsLoginVisible] = useState(false);
-  const [isSignUpVisible, setIsSignUpVisible] = useState(false);
-  
-  const [username, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function MainContent() {
+  const [message, setMessage] = useState('');
+  const textareaRef = useRef(null);
 
-  useEffect(() => {
-    setIsLoginVisible();
-    setIsSignUpVisible();
-  }, []);
-
-  const handleSignup = async (e) => {
-    e.preventDefault();
-  
-    const res = await fetch('/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-      }),
-    });
-  
-    const data = await res.json();
-  
-    if (res.ok) {
-      alert(data.message); // or redirect to login page
-    } else {
-      alert(data.error);
+  const handleInput = (e) => {
+    setMessage(e.target.value);
+    // Auto-resize textarea
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'Auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
+ 
+
   
-
-
-
-
-
-
-
-
-
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('https://a07c-180-190-101-185.ngrok-free.app/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, email, password }),
-        credentials: 'include'
-      });
-      if(response.ok) {
-        setIsLoginVisible(false);
-        console.log('Sign Up successful');
-      } else {
-        console.log('Sign Up failed');
-      } 
-    } catch(error) {
-      console.log(error);
-    } finally {
-      setUserName('');
-      setEmail('');
-      setPassword('');
-    } 
-
-
-    console.log('Sign Up attempt:', {  email, username, password });
-    setIsSignUpVisible(false);
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-        const response = await fetch('https://a07c-180-190-101-185.ngrok-free.app//api/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, username, password }),
-          credentials: 'include',
-        });
-        if(response.ok) {
-          setIsLoginVisible(true);
-          console.log('Login successful'); 
-        } else {
-          console.log('AUTHENTICATION FAILED SUCCESSFULLY')
-        }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-    console.log('Login attempt:', { email, password });
-  };
 
   return (
-    <div className="flex w-full justify-between items-center p-4 " 
-    style={{ 
-      background: 'transparent',
-    }}
+
+    <div className="flex flex-col items-center justify-center flex-grow p-4"style={{
+    background: 'radial-gradient(circle, rgba(32, 32, 48, 1) 0%, rgba(30, 30, 48, 1) 41%, rgba(34, 30, 56, 1) 60%, rgba(41, 34, 77, 1) 100%)',
+  }}
     >
-
-      <div className="flex items-center">
-        <Link href="/" className="text-white text-lg font-bold mr-4" title='Chatbot of your needs'>Tusk AI</Link>
-       
-        <button className="text-sm text-white border border-purple-500 px-6 py-1 rounded hover:bg-purple-900/50 transition-colors">
-          New Chat
-        </button>
+      <div className='absolute top-0 w-full flex justify-between p-3'>
+      <Navigation />
       </div>
-
-      {/* Navigation buttons aligned to the right */}
-      <div className="flex space-x-4 justify-end">
-        {/* Conditionally render buttons based on form visibility */}
-        {!isLoginVisible && !isSignUpVisible && (<>
-          <button onClick={() => setIsSignUpVisible(true)}
-                  className="text-sm text-white border border-purple-500 px-3 py-1 rounded hover:bg-purple-900/50 transition-colors">
-            Sign Up
-          </button>
-          <button onClick={() => setIsLoginVisible(true)}
-                  className="text-sm text-white bg-purple-600 px-3 py-1 rounded hover:bg-purple-700 transition-colors">
-            Log In
-          </button>
-        </>)}
-
-        {/* Full-screen forms */}
-          {(isLoginVisible || isSignUpVisible) && (
-            <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-              <div className="bg-gray-900 rounded-lg p-8 max-w-md w-full border border-purple-900/50">
-                {isSignUpVisible && (
-                  <form onSubmit={handleSignUp} className="space-y-6">
-                    <h2 className="text-2xl font-bold text-white mb-4">Sign Up</h2>
-                    <div>
-                    <input 
-                        type="text" 
-                        placeholder="Enter your Name" 
-                        value={username} 
-                        onChange={(e) => setUserName(e.target.value)}
-                        className="bg-gray-800 border border-purple-900/50 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 w-full"
-                      />
-                    </div>
-                    <div>
-                      <input 
-                        type="email" 
-                        placeholder="Example@email.com" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="bg-gray-800 border border-purple-900/50 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 w-full"
-                      />
-                    </div>
-                    <div>
-                      <input 
-                        type="password" 
-                        placeholder="Enter your Password" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="bg-gray-800 border border-purple-900/50 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 w-full"
-                      />
-                    </div>
-                    <button 
-                      type="submit"
-                      className="bg-purple-600 text-white rounded-md px-3 py-2 hover:bg-purple-700 transition-colors w-full"
-                    >
-                      Sign Up
-                    </button>
-                    <button 
-                      onClick={() => setIsSignUpVisible(false)}
-                      className="text-sm text-gray-400 hover:text-purple-400 transition-colors"
-                    >
-                      Cancel
-                    </button>
-                  </form>
-                )}
-
-
-
-              {isLoginVisible && (
-                <form onSubmit={handleLogin} className="space-y-4">
-                  <h2 className="text-2xl font-bold text-white mb-4">Log In</h2>
-                  <div>
-                    <input 
-                      type="email" 
-                      placeholder="Example@email.com" 
-                      value={email} 
-                      onChange={(e) => setEmail(e.target.value)} 
-                      className="bg-gray-800 border border-purple-900/50 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 w-full"
-                    />
-                  </div>
-                  <div>
-                    <input 
-                      type="password" 
-                      placeholder="Password" 
-                      value={password} 
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="bg-gray-800 border border-purple-900/50 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 w-full"
-                    />
-                  </div>
-                  <button 
-                    type="submit"
-                    className="bg-purple-600 text-white rounded-md px-3 py-2 hover:bg-purple-700 transition-colors w-full"
-                  >
-                    Log In
-                  </button>
-                  <button 
-                    onClick={() => setIsLoginVisible(false)}
-                    className="text-sm text-gray-400 hover:text-purple-400 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                </form>
-              )}
-            </div>
+        
+      <div className="w-full max-w-2xl">
+        {/* Empty state illustration or chat history would go here */}
+        <div className="flex flex-col items-center justify-center mb-10">
+          
+          <div className="w-24 h-24 bg-purple-900 rounded-full flex items-center justify-center mb-6">
+            <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
           </div>
-        )}
+          <h1 className="text-3xl font-bold text-white mb-2">How can I help you today?</h1>
+          <p className="text-gray-400 mb-8">Ask anything or upload a file to get started</p>
+        </div>
+
+        {/* Input area */}
+        <div className="fixed bottom-8 left-0 right-0 flex justify-center px-4">
+          
+
+
+
+          <div className="w-full max-w-2xl bg-gray-800/50 onfocus:height backdrop-blur-sm rounded-xl border border-gray-700 p-1 shadow-lg">
+            <div className="flex items-end">
+
+              <div className="flex-grow flex items-center bg-gray-700/50 rounded-lg pr-2">
+                <textarea
+                  ref={textareaRef}
+                  value={message}
+                  onChange={handleInput}
+                  placeholder="Message Tusk AI..."
+                  className="w-full bg-transparent text-white focus:outline-none resize-none max-h-32 py-3 px-4 scrollbar-thin scrollbar-thumb-gray-600 transition-all duration-200 ease-in-out
+"
+                  rows={1}
+                />
+                <label htmlFor="file-upload" className="cursor-pointer p-2 text-gray-400 hover:text-purple-400 transition-colors">
+                  <Paperclip className="w-5 h-5" />
+                  <input type="file" id="file-upload" className="hidden" />
+                </label>
+              </div>
+
+              <button 
+                className={`ml-2 p-3 rounded-lg ${message ? 'bg-purple-600 hover:bg-purple-700' : 'bg-gray-600 cursor-not-allowed'} transition-colors`}
+                disabled={!message}
+              >
+                <Send className="w-5 h-5 text-white" />
+              </button>
+            </div>
+            <p className="text-xs text-gray-500 mt-2 px-2">
+              Tusk AI may produce inaccurate information. Consider verifying important details.
+            </p>
+          </div>
+
+        </div>
       </div>
     </div>
   );
 }
 
-export default Navigation;
+export default MainContent;
