@@ -39,7 +39,7 @@ function Navigation() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('https://stale-melodie-aaronmarayaa-f2e40747.koyeb.app\/api/auth/login', {
+        const response = await fetch('https://stale-melodie-aaronmarayaa-f2e40747.koyeb.app/api/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
