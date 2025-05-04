@@ -1,14 +1,35 @@
+'use client';
+
+import {useEffect, useState } from 'react';
+
 function Navigation() {
-  const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    setIsLoginVisible();
-  }, []);
+const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await fetch('https://stale-melodie-aaronmarayaa-f2e40747.koyeb.app/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+          credentials: 'include',
+        });
+        if(response.ok) {
+          console.log('Login successful');
+        } else {
+          console.log('Login failed')
+        }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return(
     <div>
-      {isLoginVisible && (
+      
         <form onSubmit={handleLogin} className="space-y-4">
           <h2 className="text-2xl font-bold text-white mb-4">Log In</h2>
           <div>
@@ -36,13 +57,14 @@ function Navigation() {
             Log In
           </button>
           <button 
-            onClick={() => setIsLoginVisible(false)}
+            
             className="text-sm text-gray-400 hover:text-purple-400 transition-colors"
           >
             Cancel
           </button>
         </form>
-      )}
     </div>
   );
 }
+
+export default Navigation;
