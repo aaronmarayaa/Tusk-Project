@@ -64,6 +64,10 @@ function Navigation() {
         }
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      setUserName('');
+      setEmail('');
+      setPassword('');
     }
   };
 
@@ -77,7 +81,7 @@ function Navigation() {
 
       <div className="flex items-center">
         <Link href="/" className="text-white text-lg font-bold mr-4" title='Chatbot of your needs'>Tusk AI</Link>
-       
+
         <button className="text-sm text-white border border-purple-500 px-6 py-1 rounded hover:bg-purple-900/50 transition-colors">
           New Chat
         </button>
