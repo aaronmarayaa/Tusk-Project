@@ -56,21 +56,12 @@ function Navigation() {
     } catch (error) {
       console.error('Error:', error);
     }
-    console.log('Login attempt:', { email, password });
   };
 
   return (
-    <div className="flex justify-between items-center p-4 bg-black">
-      <div className="flex items-center">
-        <Link href="/" className="text-white text-lg font-bold mr-4">Tusk AI</Link>
-        <button className="text-sm text-white border border-purple-500 px-6 py-1 rounded hover:bg-purple-900/50 transition-colors">
-          New Chat
-        </button>
-      </div>
-
+    <div className="flex justify-end items-center p-4 bg-black">
       {/* Navigation buttons aligned to the right */}
-      <div className="flex space-x-4 justify-end">
-        {/* Conditionally render buttons based on form visibility */}
+      <div className="flex space-x-4">
         {!isLoginVisible && !isSignUpVisible && (<>
           <button onClick={() => setIsSignUpVisible(true)}
                   className="text-sm text-white border border-purple-500 px-3 py-1 rounded hover:bg-purple-900/50 transition-colors">
@@ -82,7 +73,6 @@ function Navigation() {
           </button>
         </>)}
 
-        {/* Full-screen forms */}
         {(isLoginVisible || isSignUpVisible) && (
           <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
             <div className="bg-gray-900 rounded-lg p-8 max-w-md w-full border border-purple-900/50">
