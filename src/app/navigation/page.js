@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -6,7 +7,6 @@ import { useEffect, useState } from 'react';
 function Navigation() {
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [isSignUpVisible, setIsSignUpVisible] = useState(false);
-  
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,48 +16,15 @@ function Navigation() {
     setIsSignUpVisible();
   }, []);
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
-  
-    const res = await fetch('/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-      }),
-    });
-  
-    const data = await res.json();
-  
-    if (res.ok) {
-      alert(data.message); // or redirect to login page
-    } else {
-      alert(data.error);
-    }
-  };
-  
-
-
-
-
-
-
-
-
-
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://a07c-180-190-101-185.ngrok-free.app/api/auth/register', {
+      const response = await fetch('https://stale-melodie-aaronmarayaa-f2e40747.koyeb.app/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ email, username, password }),
         credentials: 'include'
       });
       if(response.ok) {
@@ -73,34 +40,33 @@ function Navigation() {
       setEmail('');
       setPassword('');
     } 
-
-
-    console.log('Sign Up attempt:', {  email, username, password });
     setIsSignUpVisible(false);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('https://a07c-180-190-101-185.ngrok-free.app//api/auth/login', {
+        const response = await fetch('https://stale-melodie-aaronmarayaa-f2e40747.koyeb.app/api/auth/login', {
+
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
+
           body: JSON.stringify({ email, username, password }),
           credentials: 'include',
         });
         if(response.ok) {
           setIsLoginVisible(true);
-          console.log('Login successful'); 
+          console.log('Login successful');
         } else {
-          console.log('AUTHENTICATION FAILED SUCCESSFULLY')
+          console.log('Login failed')
         }
     } catch (error) {
       console.error('Error:', error);
     }
-    console.log('Login attempt:', { email, password });
   };
+
 
   return (
     <div className="flex w-full justify-between items-center p-4 " 
@@ -120,6 +86,7 @@ function Navigation() {
       {/* Navigation buttons aligned to the right */}
       <div className="flex space-x-4 justify-end">
         {/* Conditionally render buttons based on form visibility */}
+
         {!isLoginVisible && !isSignUpVisible && (<>
           <button onClick={() => setIsSignUpVisible(true)}
                   className="text-sm text-white border border-purple-500 px-3 py-1 rounded hover:bg-purple-900/50 transition-colors">
@@ -131,7 +98,6 @@ function Navigation() {
           </button>
         </>)}
 
-        {/* Full-screen forms */}
           {(isLoginVisible || isSignUpVisible) && (
             <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
               <div className="bg-gray-900 rounded-lg p-8 max-w-md w-full border border-purple-900/50">
@@ -179,8 +145,6 @@ function Navigation() {
                     </button>
                   </form>
                 )}
-
-
 
               {isLoginVisible && (
                 <form onSubmit={handleLogin} className="space-y-4">
