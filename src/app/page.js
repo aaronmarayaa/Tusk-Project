@@ -22,7 +22,7 @@ function MainContent() {
 
   return (
 
-    <div className="flex flex-col items-center justify-center flex-grow p-4"style={{
+    <div className="flex flex-col min-h-screen  items-center justify-center flex-grow p-4"style={{
     background: 'radial-gradient(circle, rgba(32, 32, 48, 1) 0%, rgba(30, 30, 48, 1) 41%, rgba(34, 30, 56, 1) 60%, rgba(41, 34, 77, 1) 100%)',
   }}
     >
@@ -45,10 +45,6 @@ function MainContent() {
 
         {/* Input area */}
         <div className="fixed bottom-8 left-0 right-0 flex justify-center px-4">
-          
-
-
-
           <div className="w-full max-w-2xl bg-gray-800/50 onfocus:height backdrop-blur-sm rounded-xl border border-gray-700 p-1 shadow-lg">
             <div className="flex items-end">
 
@@ -83,6 +79,7 @@ function MainContent() {
         </div>
       </div>
     </div>
+    
   );
 }
 
