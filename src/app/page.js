@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
-import Navigation from './components/Navigation';
-import MainContent from './components/MainContent';import isValidEmail from './utils';
+import Navigation from './register/page';
+import MainContent from './homepage/page';import isValidEmail from './utils';
 console.log(isValidEmail("example@gmail.com"))
 export default function Home() {
   const [question, setQuestion] = useState('');
