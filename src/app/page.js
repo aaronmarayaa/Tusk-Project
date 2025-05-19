@@ -1,16 +1,38 @@
-"use client";
-import { useState } from 'react';
-import Navigation from './components/Navigation';
-import MainContent from './components/MainContent';import isValidEmail from './utils';
-console.log(isValidEmail("example@gmail.com"))
-export default function Home() {
-  const [question, setQuestion] = useState('');
+'use client';
+
+import Navigation from './Pages/Navigation';
+import { useEffect, useState } from 'react';
+import MainContent from './Pages/MainContent';
+
+function App() {
+  const [isLoginVisible, setIsLoginVisible] = useState(false);
+  const [isSignUpVisible, setIsSignUpVisible] = useState(false);
+  const [user, setUser] = useState(null);
+  const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
+
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
-      
-        <MainContent />
-    </div>
+    <main>
+      <section>
+        <Navigation 
+          isLoginVisible={isLoginVisible} 
+          setIsLoginVisible={setIsLoginVisible}
+          isSignUpVisible={isSignUpVisible} 
+          setIsSignUpVisible={setIsSignUpVisible}
+          isLoginSuccessful={isLoginSuccessful}
+          setIsLoginSuccessful={setIsLoginSuccessful}
+          setUser={setUser}
+        />
+      </section>
+      <section>
+        <MainContent
+          user={user}
+          setUser={setUser}
+          isLoginSuccessful={isLoginSuccessful}
+          setIsLoginSuccessful={setIsLoginSuccessful}
+        />
+      </section>
+    </main>
   );
 }
-console.log(isValidEmail("example@email.com"))
 
+export default App;
