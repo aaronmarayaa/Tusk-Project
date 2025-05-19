@@ -2,7 +2,7 @@ export default function Sidebar({ chats, setChatHistory, deleteChat, isSidebarOp
 
     return (
         <aside className={`h-150 custom-scrollbar relative self-start flex flex-col transition-all duration-300 ease-in-out overflow-y-auto overflow-x-hidden ${isSidebarOpen ? 'w-74' : 'w-0 p-0'}`}>
-            <div className={`${isSidebarOpen ? 'w-59 gap-4' : 'w-0 gap-0'} transition-all duration-300 ease-in-out h-9 flex fixed bg-black z-1`}>
+            <div className={`${isSidebarOpen ? 'w-59 gap-4' : 'w-0 gap-0'} transition-all duration-300 ease-in-out h-9 flex bg-[#130929] fixed z-1`}>
                 <button
                     onClick={() => setIsSidebarOpen(false)}
                     className="text-xs w-full h-7 text-white hover:text-red-400 mb-4"
