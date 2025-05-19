@@ -6,7 +6,8 @@ function LoginPage({
     setIsLoginSuccessful, 
     setIsLoginVisible,
     setShowLoginSuccess,
-    setShowLoginFailed}) {
+    setShowLoginFailed,
+    setIsSignUpVisible}) {
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -72,9 +73,18 @@ function LoginPage({
             <button type="submit" className="bg-purple-600 text-white rounded-md px-3 py-2 hover:bg-purple-700 transition-colors w-full">
                 Log In
             </button>
-            <button onClick={() => setIsLoginVisible(false)} className="text-sm text-gray-400 hover:text-purple-400 transition-colors">
+            <button onClick={() => setIsLoginVisible(false)} className="text-sm text-gray-400 hover:text-purple-400 transition-colors text-center w-full border border-purple-500 px-3 py-2 rounded">
                 Cancel
             </button>
+            <div>
+                <button type="button" onClick={() => { 
+                    setIsLoginVisible(false)
+                    setIsSignUpVisible(true)
+                    }} 
+                    className="text-sm text-purple-400 hover:text-purple-300 transition-colors">
+                      Don't have an account? Sign Up
+                </button>
+            </div>
         </form>
     );
 }

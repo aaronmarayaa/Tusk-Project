@@ -213,8 +213,9 @@ function MainContent({ user, setUser, isLoginSuccessful, setIsLoginSuccessful}) 
     }
 
     return (
-        <main className="flex items-center justify-center flex-grow p-4 bg-gradient-to-b from-black to-gray-900 min-h-screen">
-            <section className='flex w-full mt-15 transition-all duration-300 ease-in-out'>
+        <main className="flex items-center justify-center flex-grow p-4 bg-gradient-to-b from-black to-gray-900 min-h-screen"
+            style={{ background: "linear-gradient(0deg, rgba(65, 37, 89, 1) 0%, rgba(30, 17, 61, 1) 53%, rgba(13, 5, 31, 1) 100%)" }}>
+                    <section className='flex w-full mt-15 transition-all duration-300 ease-in-out'>
                 {isLoginSuccessful && (
                     <Sidebar
                         chats={chats}

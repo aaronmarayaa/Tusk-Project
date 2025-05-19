@@ -78,7 +78,7 @@ function Navigation({ isLoginVisible, setIsLoginVisible, isSignUpVisible, setIsS
                                     setIsLoginVisible={setIsLoginVisible}
                                     setShowLoginSuccess={setShowLoginSuccess}
                                     setShowLoginFailed={setShowLoginFailed}
-                                    fetchUser={fetchUser}
+                                    setIsSignUpVisible={setIsSignUpVisible}
                                 />
                             )}
                         </div>
