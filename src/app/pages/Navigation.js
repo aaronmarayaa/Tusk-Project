@@ -69,6 +69,7 @@ function Navigation({ isLoginVisible, setIsLoginVisible, isSignUpVisible, setIsS
                                     setIsSignUpVisible={setIsSignUpVisible}
                                     setShowSignUpSuccess={setShowSignUpSuccess}
                                     setShowSignUpFailed={setShowSignUpFailed}
+                                    setIsLoginVisible={setIsLoginVisible}
                                 />
                             )}
 

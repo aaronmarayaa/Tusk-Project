@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function SignUpPage({ setIsSignUpVisible, setShowSignUpSuccess, setShowSignUpFailed }) {
+function SignUpPage({ setIsSignUpVisible, setShowSignUpSuccess, setShowSignUpFailed, setIsLoginVisible }) {
     const [emailAlreadyExistMessage, setEmailAlreadyExistMessage] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -50,7 +50,7 @@ function SignUpPage({ setIsSignUpVisible, setShowSignUpSuccess, setShowSignUpFai
     };
 
     return (
-        <form onSubmit={handleSignUp} className="space-y-6">
+        <form onSubmit={handleSignUp} className="space-y-4">
             <h2 className="text-2xl font-bold text-white mb-4">Sign Up</h2>
 
             {emailAlreadyExistMessage && (
@@ -111,10 +111,22 @@ function SignUpPage({ setIsSignUpVisible, setShowSignUpSuccess, setShowSignUpFai
             <button
                 type="button"
                 onClick={() => setIsSignUpVisible(false)}
-                className="text-sm text-gray-400 hover:text-purple-400 transition-colors"
+                className="text-sm text-gray-400 hover:text-purple-400 transition-colors text-center border border-purple-500 w-full rounded px-3 py-2"
             >
                 Cancel
             </button>
+            <div>
+               <button
+                    type="button"
+                    onClick={() => {
+                        setIsLoginVisible(true);
+                        setIsSignUpVisible(false);
+                      }}
+                      className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
+                    >
+                      Already have an account? Log in
+                    </button> 
+            </div>
         </form>
     );
 }
