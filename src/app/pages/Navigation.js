@@ -36,7 +36,7 @@ function Navigation({ isLoginVisible, setIsLoginVisible, isSignUpVisible, setIsS
     };
     
     return(
-        <main className="flex fixed w-full justify-between items-center p-4 absolute z-5" style={{ background: 'transparent' }} >
+        <main className="flex fixed w-full justify-between items-center p-4 z-5" style={{ background: 'transparent' }} >
             <section className="flex items-center">
                 <Link href="/" className="text-white text-lg font-bold mr-4" title='Chatbot of your needs'>Tusk AI</Link>
             </section>

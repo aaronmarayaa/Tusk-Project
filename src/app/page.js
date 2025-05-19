@@ -1,8 +1,8 @@
 'use client';
 
-import Navigation from './Pages/Navigation';
-import { useEffect, useState } from 'react';
-import MainContent from './Pages/MainContent';
+import Navigation from './pages/Navigation';
+import { useState } from 'react';
+import MainContent from './pages/MainContent';
 
 function App() {
   const [isLoginVisible, setIsLoginVisible] = useState(false);

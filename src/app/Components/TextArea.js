@@ -16,7 +16,7 @@ export function TextArea({
     return(
         <div className="w-full max-w-2xl bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 p-1 shadow-lg">
                             {pdfFile && (
-                                <p className="flex gap-5 items-center text-sm text-gray-600 mt-2 mb-4 ml-3 truncate mb-2">
+                                <p className="flex gap-5 items-center text-sm text-gray-600 mt-2 mb-4 ml-3 truncate">
                                 {pdfFile.name}
                                 <X className='w-4' 
                                     onClick={() => {
