@@ -259,13 +259,23 @@ function MainContent({ user, setUser, isLoginSuccessful, setIsLoginSuccessful}) 
                         <div className="overflow-y-scroll w-full px-60 h-[40rem] custom-scrollbar">
                             {chatHistory.length === 0 && (
                                 <div className="text-center text-gray-400 mt-10 text-lg">
-                                    {isLoginSuccessful && (
-                                        <div className="text-center text-gray-400 mt-10">
-                                        <div className="text-6xl h-20 font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                                            {user == null ? '' : `Hello, ${user.username}`}
-                                        </div>
-                                    </div>
-                                    )}
+                                    {isLoginSuccessful ? 
+                                        (
+                                             <div className="text-center text-gray-400 mt-10">
+                                                <div className="text-6xl h-20 font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                                                    {user == null ? '' : `Hello, ${user.username}`}
+                                                </div>
+                                            </div>
+                                                                                    ) :
+                                        (
+                                            <div className="text-center text-gray-400 mt-10">
+                                                <div className="text-6xl h-20 font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                                                    Wecome to Tusk AI
+                                                </div>
+                                            </div>
+
+
+                                        )}
                                     <div className="mb-4">💬 No messages yet</div>
                                     <div className=''>Upload a file then ask about the file to get started </div>
                                 </div>
