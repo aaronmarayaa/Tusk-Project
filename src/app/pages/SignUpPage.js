@@ -1,4 +1,7 @@
+'use client';
+
 import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 function SignUpPage({ setIsSignUpVisible, setShowSignUpSuccess, setShowSignUpFailed, setIsLoginVisible }) {
     const [emailAlreadyExistMessage, setEmailAlreadyExistMessage] = useState('');
@@ -7,6 +10,7 @@ function SignUpPage({ setIsSignUpVisible, setShowSignUpSuccess, setShowSignUpFai
     const [confirmPassword, setConfirmPassword] = useState('');
     const [username, setUsername] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [showPasswords, setShowPasswords] = useState(false); // Unified toggle
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -54,15 +58,10 @@ function SignUpPage({ setIsSignUpVisible, setShowSignUpSuccess, setShowSignUpFai
             <h2 className="text-2xl font-bold text-white mb-4">Sign Up</h2>
 
             {emailAlreadyExistMessage && (
-                <p className="text-xs text-red-700 font-bold italic">
-                    {emailAlreadyExistMessage}
-                </p>
+                <p className="text-xs text-red-700 font-bold italic">{emailAlreadyExistMessage}</p>
             )}
-
             {passwordError && (
-                <p className="text-xs text-red-600 italic font-semibold">
-                    {passwordError}
-                </p>
+                <p className="text-xs text-red-600 italic font-semibold">{passwordError}</p>
             )}
 
             <input
@@ -83,23 +82,45 @@ function SignUpPage({ setIsSignUpVisible, setShowSignUpSuccess, setShowSignUpFai
                 required
             />
 
-            <input
-                type="password"
-                placeholder="Enter your Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="bg-gray-800 border border-purple-900/50 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 w-full"
-                required
-            />
+            {/* Password Field */}
+            <div className="relative">
+                <input
+                    type={showPasswords ? "text" : "password"}
+                    placeholder="Enter your Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="bg-gray-800 border border-purple-900/50 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 w-full pr-10"
+                    required
+                />
+                <button
+                    type="button"
+                    onClick={() => setShowPasswords(!showPasswords)}
+                    className="absolute inset-y-0 right-2 flex items-center text-gray-400 hover:text-white"
+                    tabIndex={-1}
+                >
+                    {showPasswords ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+            </div>
 
-            <input
-                type="password"
-                placeholder="Confirm your Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="bg-gray-800 border border-purple-900/50 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 w-full"
-                required
-            />
+            {/* Confirm Password Field */}
+            <div className="relative">
+                <input
+                    type={showPasswords ? "text" : "password"}
+                    placeholder="Confirm your Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="bg-gray-800 border border-purple-900/50 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 w-full pr-10"
+                    required
+                />
+                <button
+                    type="button"
+                    onClick={() => setShowPasswords(!showPasswords)}
+                    className="absolute inset-y-0 right-2 flex items-center text-gray-400 hover:text-white"
+                    tabIndex={-1}
+                >
+                    {showPasswords ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+            </div>
 
             <button
                 type="submit"
@@ -115,17 +136,18 @@ function SignUpPage({ setIsSignUpVisible, setShowSignUpSuccess, setShowSignUpFai
             >
                 Cancel
             </button>
+
             <div>
-               <button
+                <button
                     type="button"
                     onClick={() => {
                         setIsLoginVisible(true);
                         setIsSignUpVisible(false);
-                      }}
-                      className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
-                    >
-                      Already have an account? Log in
-                    </button> 
+                    }}
+                    className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
+                >
+                    Already have an account? Log in
+                </button>
             </div>
         </form>
     );
